@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech to Text Converter</title>
+  <link rel="stylesheet" href="speechToText.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Speech to Text Converter</h1>
+    
+    <div class="language-select">
+      <label for="language">Select Language:</label>
+      <select id="language">
+        <option value="en-US">English (US)</option>
+        <option value="en-GB">English (UK)</option>
+        <option value="es-ES">Spanish</option>
+        <option value="fr-FR">French</option>
+        <option value="de-DE">German</option>
+        <option value="it-IT">Italian</option>
+        <option value="pt-BR">Portuguese</option>
+        <option value="ru-RU">Russian</option>
+        <option value="ja-JP">Japanese</option>
+        <option value="ko-KR">Korean</option>
+        <option value="zh-CN">Chinese (Simplified)</option>
+      </select>
+    </div>
+
+    <div id="errorMessage">
+      Speech recognition is not supported in your browser. Try using Chrome or Edge.
+    </div>
+    
+    <div class="controls">
+      <button id="startBtn">Start Recording</button>
+      <button id="stopBtn" disabled>Stop Recording</button>
+      <button id="clearBtn">Clear Text</button>
+      <button id="copyBtn">Copy Text</button>
+    </div>
+    
+    <div id="status">Ready to record...</div>
+    
+    <textarea id="result" placeholder="Your speech will appear here..."></textarea>
+  </div>
+
+  <script src="speechToText.js"></script>
+</body>
+</html>
