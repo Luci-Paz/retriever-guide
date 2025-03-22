@@ -17,6 +17,7 @@ from flask import (
     Response,
     stream_with_context
 )
+import requests
 from flask_cors import CORS
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -61,6 +62,11 @@ def chat():
     data = request.json
     msg = data.get('chat', '')
     chat_history = data.get('history', [])
+
+    # Add initial prompt if there is no history
+    if not chat_history:
+        initial_prompt = "You are a school advisor at UMBC. Please answer the student's questions as best you can."
+        chat_history = [{"role": "user", "parts": [initial_prompt]}]
 
     # Start a chat session with the model using the provided history.
     chat_session = model.start_chat(history=chat_history)
