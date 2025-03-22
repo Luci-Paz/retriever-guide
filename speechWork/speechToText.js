@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stopBtn = document.getElementById('stopBtn');
   const clearBtn = document.getElementById('clearBtn');
   const copyBtn = document.getElementById('copyBtn');
+  const speakBtn = document.getElementById('speakBtn');  // New button for TTS
   const status = document.getElementById('status');
   const resultText = document.getElementById('result');
   const languageSelect = document.getElementById('language');
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   stopBtn.addEventListener('click', stopRecording);
   clearBtn.addEventListener('click', clearText);
   copyBtn.addEventListener('click', copyText);
+  speakBtn.addEventListener('click', speakText);
   languageSelect.addEventListener('change', changeLanguage);
   
   // Functions
@@ -69,6 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecording) {
       stopRecording();
       startRecording();
+    }
+  }
+  
+  function speakText() {
+	const text = resultText.value.trim();
+    if (text !== '') {
+      // Create a new SpeechSynthesisUtterance instance
+      const utterance = new SpeechSynthesisUtterance(text);
+      
+      // Optionally, set properties like voice, rate, and pitch here:
+      // utterance.voice = speechSynthesis.getVoices()[0];  // Select the first voice
+      // utterance.rate = 1;  // Speed of speech (1 is normal speed)
+      // utterance.pitch = 1; // Pitch of voice (1 is normal pitch)
+
+      // Speak the text
+      speechSynthesis.speak(utterance);
+      status.textContent = 'Speaking...';
+    } else {
+      status.textContent = 'No text to speak.';
     }
   }
   
