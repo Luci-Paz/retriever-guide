@@ -225,7 +225,8 @@ async function getGeminiResponse(message) {
 
 
 async function getGeminiResponseSummary(message) {
-		const consiceMessage = `Please give a brief summary of this response, only giving the key information and main points: ${message}`;
+		const consiceMessage = `You are a helpful assistant that summarizes inputs in the tone of an advisor for the University of Maryland, Baltimore County. You give brief responses and avoid 
+		saying the urls of websites. Please only include main and relevant information in your responses: ${message}`;
 		const data = {
 			contents: [{
 				parts: [{ text: consiceMessage }]
