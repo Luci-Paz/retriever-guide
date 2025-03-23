@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retriever Guide</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+	<header>
+		<h1>Retriever Guide</h1>
+		<p>Powered by Google Gemini.</p>
+	</header>
+	
+	<! container makes a stack of all elements >
+	<div class="container">
+		
+		<! Make the langauge drop down menu >
+		<div class="language-select">
+		  <label for="language">Select Language:</label>
+		  <select id="language">
+			<option value="en-US">English (US)</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="es-ES">Spanish</option>
+			<option value="fr-FR">French</option>
+			<option value="de-DE">German</option>
+			<option value="it-IT">Italian</option>
+			<option value="pt-BR">Portuguese</option>
+			<option value="ru-RU">Russian</option>
+			<option value="ja-JP">Japanese</option>
+			<option value="ko-KR">Korean</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+		  </select>
+		</div>
+		
+		<! Error message if browser cannot be used >
+		<div id="errorMessage">
+			Speech recognition is not supported in your browser. Try using Chrome or Edge.
+		</div>
+		
+		<! Welcome Screen >
+		<main>
+			<div id="welcome-screen">
+				<img src=".\images\logo\UMBC-Primary-Tagline.png" alt="UMBC Logo">
+				<p>Welcome to RetrieverGuide! Your virtual orientation to UMBC.</p>
+				<button id="start-chat">Start Chat</button>
+			</div>
+			
+			<div id="chat-interface" style="display:none;">
+				<div id="chat-window"></div>
+				<textarea id="result" placeholder="Your speech will appear here..."></textarea>
+				<button id="record-button">Ask Question</button>
+				<button id="send-button">Send Question</button>
+				<button id="clear-chat">Clear Chat</button>
+			</div>
+		</main>
+	</div>
+	
+	<! Footer >
+	<footer>
+		<p>&copy; 2025 Abdu, Yinka, Lucian, Alex</p>
+        <p>For educational purposes only. AI can make mistakes, double check important info.</p>
+        <p></p>
+	</footer>
+  
+  <! Scripts >
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>
