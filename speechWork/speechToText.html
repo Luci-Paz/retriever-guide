@@ -4,46 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Speech to Text Converter</title>
-  <link rel="stylesheet" href="speechToText.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Speech to Text Converter</h1>
-    
-    <div class="language-select">
-      <label for="language">Select Language:</label>
-      <select id="language">
-        <option value="en-US">English (US)</option>
-        <option value="en-GB">English (UK)</option>
-        <option value="es-ES">Spanish</option>
-        <option value="fr-FR">French</option>
-        <option value="de-DE">German</option>
-        <option value="it-IT">Italian</option>
-        <option value="pt-BR">Portuguese</option>
-        <option value="ru-RU">Russian</option>
-        <option value="ja-JP">Japanese</option>
-        <option value="ko-KR">Korean</option>
-        <option value="zh-CN">Chinese (Simplified)</option>
-      </select>
-    </div>
-
-    <div id="errorMessage">
-      Speech recognition is not supported in your browser. Try using Chrome or Edge.
-    </div>
-    
-    <div class="controls">
-      <button id="startBtn">Start Recording</button>
-      <button id="stopBtn" disabled>Stop Recording</button>
-      <button id="clearBtn">Clear Text</button>
-      <button id="copyBtn">Copy Text</button>
-	  <button id="speakBtn">Speak Text</button>
-    </div>
-    
-    <div id="status">Ready to record...</div>
-    
-    <textarea id="result" placeholder="Your speech will appear here..."></textarea>
+  
+	<header>
+		<h1>Retriever Guide</h1>
+	</header>
+	
+	<! container makes a stack of all elements >
+	<div class="container">
+		
+		<! Make the langauge drop down menu >
+		<div class="language-select">
+		  <label for="language">Select Language:</label>
+		  <select id="language">
+			<option value="en-US">English (US)</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="es-ES">Spanish</option>
+			<option value="fr-FR">French</option>
+			<option value="de-DE">German</option>
+			<option value="it-IT">Italian</option>
+			<option value="pt-BR">Portuguese</option>
+			<option value="ru-RU">Russian</option>
+			<option value="ja-JP">Japanese</option>
+			<option value="ko-KR">Korean</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+		  </select>
+		</div>
+		
+		<! Error message if browser cannot be used >
+		<div id="errorMessage">
+			Speech recognition is not supported in your browser. Try using Chrome or Edge.
+		</div>
+		
+		<! Welcome Screen >
+		<main>
+			<div id="welcome-screen">
+				<img src=".\images\logo\UMBC-Primary-Tagline.png" alt="UMBC Logo">
+				<p>Welcome to RetrieverGuide! Your virtual orientation to UMBC.</p>
+				<button id="start-chat">Start Chat</button>
+			</div>
+			
+			<div id="chat-interface">
+				<div id="chat-window"></div>
+				<textarea readonly="readonly" id="result" placeholder="Your speech will appear here..."></textarea>
+				<button id="record-button">Ask Question</button>
+				<button id="send-button">Send</button>
+				<button id="clear-chat">Clear Chat</button>
+			</div>
+			
+		</main>
+		<div class="controls">
+			<button id="startBtn">Start Recording</button>
+			<button id="stopBtn" disabled>Stop Recording</button>
+			<button id="clearBtn">Clear Text</button>
+			<button id="copyBtn">Copy Text</button>
+			<button id="speakBtn">Speak Text</button>
+		</div>
+		
+		<div id="status">Ready to record...</div>
+		
+		
   </div>
 
-  <script src="speechToText.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
