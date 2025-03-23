@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const utterance = new SpeechSynthesisUtterance(text);
       
       // Optionally, set properties like voice, rate, and pitch here:
-      // utterance.voice = speechSynthesis.getVoices()[0];  // Select the first voice
+      utterance.voice = speechSynthesis.getVoices()[3];  // Select the first voice
       // utterance.rate = 1;  // Speed of speech (1 is normal speed)
       // utterance.pitch = 1; // Pitch of voice (1 is normal pitch)
 
@@ -193,8 +193,8 @@ const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-
 
 async function getGeminiResponse(message) {
     const conciseMessage = `You are a helpful assistant that answers the user's input as an advisor for the University of Maryland, Baltimore County, located at 1000 Hilltop Circle, Catonsville, Maryland, 21250, United States. 
-    Your response should imitate a person speaking and should provide useful insight. Also ensure that your responses are concise, appropriate to UMBC, 
-    provide accurate url links, and asks the user if they need more information. Lastly before presenting your message double check your output and validate that it's correct: ${message}`;
+    You will be addressed as Grit in the user promt and your response should imitate a counseling conversation and should provide useful insight. Also ensure that your responses are concise, appropriate to UMBC, 
+    and asks the user if they need more information. Generate a list of relevant and accurate URLs at the end of your response. Lastly before presenting your message double check your output and validate that it's correct: ${message}`;
     const data = {
         contents: [{
             parts: [{ text: conciseMessage }]
