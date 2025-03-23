@@ -112,7 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     botMessage.innerHTML = renderMarkdown(response); // Parse Markdown
                     chatWindow.appendChild(botMessage);
                     chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
-					speakText(response);							// TTS method call
+					
+					getGeminiResponseSummary(response)
+						.then(summary => {
+							speakText(summary);
+						})
                 })
                 .catch(error => {
                     // Remove loading indicator
@@ -218,6 +222,38 @@ async function getGeminiResponse(message) {
         return 'Error: Could not get response from chatbot. Please try again later.';
     }
 }
+
+
+async function getGeminiResponseSummary(message) {
+		const consiceMessage = `Please give a brief summary of this response, only giving the key information and main points: ${message}`;
+		const data = {
+			contents: [{
+				parts: [{ text: consiceMessage }]
+			}]
+		};
+		
+		try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        const responseText = result.candidates?.[0]?.content?.parts?.[0]?.text || 'No response text found.';
+        return responseText;
+    } catch (error) {
+        console.error('Error calling Gemini API:', error);
+        return 'Error: Could not get response from chatbot. Please try again later.';
+    }
+}
+
 
 // Function to render Markdown
 function renderMarkdown(text) {
