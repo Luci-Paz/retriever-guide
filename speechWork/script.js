@@ -226,8 +226,8 @@ async function getGeminiResponse(message) {
 
 
 async function getGeminiResponseSummary(message) {
-		const consiceMessage = `You are a helpful assistant that summarizes inputs in the tone of an advisor for the University of Maryland, Baltimore County. You give brief responses and avoid 
-		saying the urls of websites and any markdown notations. Please only include main and relevant information in your responses: ${message}`;
+		const consiceMessage = `You are a helpful assistant that summarizes inputs in the tone of an advisor for the University of Maryland, Baltimore County. You will give a brief response and avoid 
+		saying the urls of websites and any markdown markings such as asterisks or heading signs. Please include the main and relevant information in your responses: ${message}`;
 		const data = {
 			contents: [{
 				parts: [{ text: consiceMessage }]
