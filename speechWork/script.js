@@ -1,8 +1,9 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   // Check if browser supports speech recognition
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
     document.getElementById('errorMessage').style.display = 'block';
-    document.getElementById('startBtn').disabled = true;
+    document.getElementById('record-button').disabled = true;
     return;
   }
   
@@ -11,13 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const recognition = new SpeechRecognition();
   
   // Get DOM elements
-  const startBtn = document.getElementById('startBtn');
-  const stopBtn = document.getElementById('stopBtn');
-  const clearBtn = document.getElementById('clearBtn');
-  const copyBtn = document.getElementById('copyBtn');
-  const speakBtn = document.getElementById('speakBtn');  // New button for TTS
-  const status = document.getElementById('status');
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const chatInterface = document.getElementById('chat-interface');
+  const chatWindow = document.getElementById('chat-window');
+  const startChatButton = document.getElementById('start-chat');
   const resultText = document.getElementById('result');
+  const recordButton = document.getElementById('record-button');
+  const sendButton = document.getElementById('send-button');
+  const clearChatButton = document.getElementById('clear-chat');
   const languageSelect = document.getElementById('language');
   
   // Configure recognition
@@ -29,41 +31,46 @@ document.addEventListener('DOMContentLoaded', () => {
   let isRecording = false;
   
   // Event listeners
-  startBtn.addEventListener('click', startRecording);
-  stopBtn.addEventListener('click', stopRecording);
-  clearBtn.addEventListener('click', clearText);
-  copyBtn.addEventListener('click', copyText);
-  speakBtn.addEventListener('click', speakText);
+  
+  startChatButton.addEventListener('click', startChat);
+  recordButton.addEventListener('click', recording);
+  clearChatButton.addEventListener('click', clearChat);
+  //sendButton.addEventListener('click', sendText);
   languageSelect.addEventListener('change', changeLanguage);
   
   // Functions
-  function startRecording() {
-    resultText.focus();
-    recognition.start();
-    isRecording = true;
-    startBtn.disabled = true;
-    stopBtn.disabled = false;
-    status.textContent = 'Listening...';
-  }
+  function startChat() {
+	  welcomeScreen.style.display = 'none';
+	  chatInterface.style.display = 'block';
+  } //end startChat()
   
-  function stopRecording() {
-    recognition.stop();
-    isRecording = false;
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    status.textContent = 'Recording stopped';
-  }
+  
+  function recording() {
+	  // If recording, change button display and get user input
+	  if (!isRecording) {
+		  recordButton.textContent = 'recording... click again to end';
+		  resultText.focus();
+		  recognition.start();
+		  isRecording = true;
+	  } 
+	  // else, change button display and stop getting user input
+	  else {
+		  recordButton.textContent = 'Ask Question';
+		  recognition.stop();
+		  isRecording = false;
+	  } //end if-else
+  } //end recording()
+  
   
   function clearText() {
     resultText.value = '';
-    status.textContent = 'Text cleared';
-  }
+  } //end clearText()
   
-  function copyText() {
-    resultText.select();
-    document.execCommand('copy');
-    status.textContent = 'Text copied to clipboard';
-  }
+  
+  function clearChat() {
+        chatWindow.innerHTML = '';
+  } //end clearChat()
+  
   
   function changeLanguage() {
     recognition.lang = languageSelect.value;
@@ -71,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isRecording) {
       stopRecording();
       startRecording();
-    }
-  }
+    } //end if
+  } //end changeLanguage()
+
   
   function speakText() {
 	const text = resultText.value.trim();
