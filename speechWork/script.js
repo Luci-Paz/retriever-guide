@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const utterance = new SpeechSynthesisUtterance(text);
       
       // Optionally, set properties like voice, rate, and pitch here:
-      utterance.voice = speechSynthesis.getVoices()[3];  // Select the first voice
+      utterance.voice = speechSynthesis.getVoices()[0];  // Select the first voice
       // utterance.rate = 1;  // Speed of speech (1 is normal speed)
       // utterance.pitch = 1; // Pitch of voice (1 is normal pitch)
 
