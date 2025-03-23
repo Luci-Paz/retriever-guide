@@ -185,7 +185,7 @@ const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-
 
 
 async function getGeminiResponse(message) {
-	const conciseMessage = `You are a helpful assistant that answers the user's input as an advisor for the University of Maryland, Baltimore County, located at 1000 Hilltop Circle, Catonsville, Maryland, 21250, United States. Ensure your responses are appropriate to UMBC.: ${message}`;
+	const conciseMessage = `You are a helpful assistant that answers the user's input as an advisor for the University of Maryland, Baltimore County, located at 1000 Hilltop Circle, Catonsville, Maryland, 21250, United States. Ensure your responses are short and concise, appropriate to UMBC, and asks the user if they need more information: ${message}`;
     const data = {
         contents: [{
             parts: [{ text: conciseMessage }]
