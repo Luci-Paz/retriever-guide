@@ -1,0 +1,44 @@
+copy fragments
+
+<div class="controls">
+			<button id="startBtn">Start Recording</button>
+			<button id="stopBtn" disabled>Stop Recording</button>
+			<button id="clearBtn">Clear Text</button>
+			<button id="copyBtn">Copy Text</button>
+			<button id="speakBtn">Speak Text</button>
+		</div>
+		
+		
+		button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+function startRecording() {
+    resultText.focus();
+    recognition.start();
+    isRecording = true;
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    status.textContent = 'Listening...';
+  }
+  
+  function stopRecording() {
+    recognition.stop();
+    isRecording = false;
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    status.textContent = 'Recording stopped';
+  }
