@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     botMessage.innerHTML = renderMarkdown(response); // Parse Markdown
                     chatWindow.appendChild(botMessage);
                     chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
+					speakText(response);							// TTS method call
                 })
                 .catch(error => {
                     // Remove loading indicator
@@ -123,14 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     chatWindow.appendChild(errorMessage);
                     chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
                 });
+				
+				
 
             userInput.value = '';
         }
    } //end sendText();
    
 
-  function speakText() {
-	const text = resultText.value.trim();
+  function speakText(message) {
+	const text = message.trim();
     if (text !== '') {
       // Create a new SpeechSynthesisUtterance instance
       const utterance = new SpeechSynthesisUtterance(text);
@@ -142,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Speak the text
       speechSynthesis.speak(utterance);
-      status.textContent = 'Speaking...';
     } else {
       status.textContent = 'No text to speak.';
     }
